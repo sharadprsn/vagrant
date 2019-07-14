@@ -2,6 +2,7 @@
 
 ## build docker image
 cd /vagrant 
+
 sudo docker build -t myjenkins .
 
 ## start jenkins container

@@ -1,0 +1,9 @@
+---
+- name: Setup kubernetes
+  hosts: k8
+  become: yes
+  gather_facts: no
+  remote_user: vagrant
+
+  roles:
+  - k8-common

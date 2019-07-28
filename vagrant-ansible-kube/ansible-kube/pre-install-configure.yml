@@ -1,0 +1,8 @@
+---
+- name: First playbook to integrate with all nodes
+  hosts: k8
+  gather_facts: no
+  remote_user: vagrant
+
+  roles:
+  - common

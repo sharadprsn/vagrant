@@ -1,0 +1,1 @@
+kubeadm join 192.168.15.20:6443 --token akkytd.z5sqfids4n4zp2ol     --discovery-token-ca-cert-hash sha256:d252fb460ddc713f27e369bb6820ab552c5d2120c921a92ac79aa0ae87e3991a 

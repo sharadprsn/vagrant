@@ -3,7 +3,7 @@
   become: true
   gather_facts: no
   pre_tasks:
-  - name: 'install python2'
+  - name: 'install python'
     raw: sudo apt-get -y install python
   tasks:
   - name: Install packages that allow apt to be used over HTTPS
@@ -46,6 +46,7 @@
     user:
       name: vagrant
       group: docker
+
   - name: Remove swapfile from /etc/fstab
     mount:
       name: "{{ item }}"
@@ -90,6 +91,7 @@
       name: kubelet
       daemon_reload: yes
       state: restarted
+	  
   - name: Initialize the Kubernetes cluster using kubeadm
     command: kubeadm init --apiserver-advertise-address="192.168.50.10" --apiserver-cert-extra-sans="192.168.50.10"  --node-name k8s-master --pod-network-cidr=192.168.0.0/16
 

@@ -1,0 +1,9 @@
+---
+- name: Start and configure kubernetes master
+  hosts: k8-master
+  become: yes
+  gather_facts: no
+  remote_user: vagrant
+
+  roles:
+  - k8-master

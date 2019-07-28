@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+IMAGE_NAME = "bento/ubuntu-18.10"
+N = 2
+
+Vagrant.configure("2") do |config|
+
+  # control box with ansible
+  config.vm.define :mgmt do |mgmt|
+    mgmt.vm.box = IMAGE_NAME
+    mgmt.vm.hostname = "mgmt"
+    mgmt.vm.network :private_network, ip: "192.168.15.10"
+    mgmt.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = 1
+    end
+    mgmt.vm.provision :shell, path: "scripts/install_ansible.sh"
+  end
+  
+  # kubernetes master
+  config.vm.define "master" do |master|
+    master.vm.box = IMAGE_NAME
+    master.vm.hostname="master"
+    master.vm.network :private_network, ip: "192.168.15.20"
+	master.vm.network :forwarded_port, guest: 8001, host: 8001
+    master.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 2
+    end
+  end
+
+  # kubernetes nodes
+  (1..N).each do |i|
+     config.vm.define "node-#{i}" do |node|
+        node.vm.box = IMAGE_NAME
+        node.vm.hostname = "node-#{i}"
+        node.vm.network :private_network, ip: "192.168.15.2#{i}"
+        node.vm.provider "virtualbox" do |vb|
+          vb.memory = "2048"
+          vb.cpus = 2
+        end
+      end 
+    end
+end

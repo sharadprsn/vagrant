@@ -21,8 +21,10 @@ ansible-playbook -i /inventory/local start-k8-master.yml
 ## To bring up kubernetes dashboard
 
 new shell:: vagrant ssh master
+kubectl get pods -o wide --all-namespaces --make sure all pods are running
 kubectl proxy
 new Shell:: vagrant ssh master
+kubectl get pods -o wide --all-namespaces --make sure all pods are running
 kubectl get secret $(kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 

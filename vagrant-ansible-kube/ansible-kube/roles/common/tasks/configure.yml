@@ -10,6 +10,4 @@
       
 - name: update all packages to latest version
   become: yes
-  apt:
-    name: "*"
-    state: latest
+  command: apt-get update

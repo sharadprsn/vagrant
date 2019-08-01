@@ -24,7 +24,10 @@ new shell:: vagrant ssh master
 kubectl get pods -o wide --all-namespaces --make sure all pods are running
 kubectl proxy
 new Shell:: vagrant ssh master
+ssh -L 8001:localhost:8001 vagrant@192.168.15.20
+
 kubectl get pods -o wide --all-namespaces --make sure all pods are running
+
 kubectl get secret $(kubectl get serviceaccount dashboard -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode
 http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 

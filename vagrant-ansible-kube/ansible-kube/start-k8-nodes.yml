@@ -1,0 +1,9 @@
+---
+- name: Start and configure kubernetes nodes
+  hosts: k8-node
+  become: yes
+  gather_facts: no
+  remote_user: vagrant
+
+  roles:
+  - k8-node

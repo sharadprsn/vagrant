@@ -1,1 +1,1 @@
-kubeadm join 192.168.15.20:6443 --token nrkz1g.uys10hg9bibs3hwg     --discovery-token-ca-cert-hash sha256:8ed0f28cc9f98e720b8aab4c5e42c6ad773efbff092c752bda8d2c2a34b1304f 
+kubeadm join 192.168.15.20:6443 --token 8jfkd8.34xkf7s5iduauu16     --discovery-token-ca-cert-hash sha256:60025d5e8158837409b27e9d941879a55fae0a4a9b1a26c4233488dd6c74afec 
